@@ -1,5 +1,5 @@
 # Promodo-Clock
-This is usually used for Promodo technique which boosts up efficiency in working.
+This clock is usually used for Promodo technique which boosts up efficiency in working.
 
 # Technology
 1. Animate.css
