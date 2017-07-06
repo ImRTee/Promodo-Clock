@@ -1,20 +1,60 @@
+/* responsive css */
 @media screen and (max-width: 576px){
+    .clock{
+        width: 285px;
+        height: 285px;
+    }
+    .clock-name{
+        width: 170px;
+        margin: 40px auto 20px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .time{
+        font-family: 'Orbitron', sans-serif;
+        font-size: 50px;
+        margin-bottom: 30px;
+
+    }
+    .state{
+        margin-top: 50px;
+        margin-left: 10px;
+    }
+    .plus-icon,.minus-icon{
+        margin-top: 20px;
+    }
+    .minus-icon{
+        margin-left: 20px;
+    }
 
 }
 
 @media screen and (min-width: 576px) {
+    .clock {
+        width: 350px;
+        height: 350px;
+    }
 
+    .clock-name {
+        width: 250px;
+        margin: 50px auto 30px;
+    }
+
+    .time {
+        font-size: 70px;
+        margin-bottom: 30px;
+    }
+
+    .plus-icon, .minus-icon {
+        font-size: 50px;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    .state {
+        margin-top: 50px;
+        margin-left: 10px;
+    }
 }
 
-@media screen and (min-width: 720px){
-
-}
-
-@media screen and (min-width: 992px){
-
-}
-
-@media screen and (min-width: 1200px){
-
-}
 

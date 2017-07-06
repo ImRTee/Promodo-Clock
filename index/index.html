@@ -1,28 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="">
+<html lang="en" ng-app="clockApp">
 <head>
     <meta charset="UTF-8">
     <title>Almighty Calculator</title>
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <script src="https://use.fontawesome.com/afc41db857.js"></script>
     <title>Local WeatherForecast</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <!--Bootstrap sources ver 3.3.1 3.3.7 and 4.0.0-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
-<body>
+<body >
+<main class="wrapper"  ng-controller="timerCtrl">
+    <p style="color: grey"><i class="fa fa-volume-up" aria-hidden="true"></i> Keep your volume up for notification</p>
+    <!--   PROJECT'S NAME -->
+    <div class="" style="text-align:center; font-size: 20px; font-family:'Orbitron', sans-serif;">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="sample3" style="text-align:center;font-size: 20px;color: black; font-family: 'Orbitron', sans-serif; text-transform:uppercase" ng-model="projectName">
+            <label class="mdl-textfield__label animated bounce" for="sample3" style="text-align:center; color: darkgreen">Project's Name</label>
+        </div>
+    </div>
+    <!-- CLOCK  -->
+    <div class="clock" ng-style="{'border-color':borderColor}" ng-click="triggerButton()">
+        <div class="clock-name">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"type="text" id="sample3" style="text-align:center">
+                <label class="mdl-textfield__label animated rubberBand" for="sample3" style="text-align:center; color: black; font-size: 20px">{{clockType}}</label>
+            </div>
+        </div>
+        <div class="time">
+            {{minutes}}:{{seconds}}
+        </div>
+        <div class="state">
+            <i class="fa fa-{{state}} fa-4x" aria-hidden="true"></i>
+        </div>
+        <span class="fill" ng-style="{'height':fillHeight, 'background':fillColor }">
+<!--     this piece of code is taken from freecodecamp.com sample project -->
+    </span>
+    </div>
+
+    <!--   BUTTON's AREA -->
+    <div class="buttons-container" >
+        <button type="button" ng-click="edit()" class="btn btn-outline-primary edit-btn">Edit</button>
+        <button type="button" ng-click="reset()" class="btn btn-outline-primary edit-btn">Reset</button>
+    </div>
+</main>
 
 
 
 
 
+<div class="edit-modal " ng-controller="userInputCtrl">
+    <div class="edit-modal-content animated fadeInDownBig">
+        <i class="fa fa-times-circle-o fa-3x close-btn" aria-hidden="true" ng-click="close()"></i>
+        <h2 style="color: blue"> Session</h2>
+        <div class="session-input">
+            <i class="fa fa-plus fa-3x plus-icon" ng-click="addTime('sessionInput')" ria-hidden="true"></i>
+            <div class="session-clock"><span class="session-time">{{sessionInput}}</span></div>
+            <i class="fa fa-minus fa-3x minus-icon" ng-click= "minusTime('sessionInput')" aria-hidden="true"></i>
 
-
+        </div>
+        <h2 style="color: red">Break</h2>
+        <div class="break-input">
+            <i class="fa fa-plus fa-3x plus-icon"  ng-click="addTime('breakInput')" aria-hidden="true"></i>
+            <div class="break-clock"> <span class="break-time">{{breakInput}}</span></div>
+            <i class="fa fa-minus fa-3x minus-icon" ng-click= "minusTime('breakInput')" aria-hidden="true"></i>
+        </div>
+        <button class="accept-btn" ng-click="accept()">Accept</button>
+    </div>
+</div>
 
 
 
@@ -31,12 +80,15 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="../node_modules/angular/angular.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="../js/js.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="../js/js.js"></script>
 </body>
 </html>
